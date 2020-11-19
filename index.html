@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>サッカーノート風メモ帳</title>
+</head>
+<body>
+
+  <!-- html カレンダー -->
+    <div class="calendar-box">
+      <div id="calendar"></div>
+    </div>
+  <!-- html カレンダー -->
+    
+    
+  <!-----入力フォーム-------->
+    <div class="form">
+      <div id="diary_date"></div>
+
+        <div class="d_title">
+          今日の対戦相手  
+          <input type="text" id="diary_title">
+        </div>
+
+        <div class="d_title_sub">
+          今日の試合結果  
+          <input type="text" id="diary_title_sub">
+        </div>
+
+      <div class="container">
+        <div class="d_body">
+          <textarea id="diary_body" rows="10" cols="20" placeholder="良かった点を書こう！"></textarea>
+        </div>
+        
+        <div class="d_body_sub">
+          <textarea id="diary_body_sub" rows="10" cols="20" placeholder="反省点.."></textarea>
+        </div>
+      </div>
+
+
+      <div class="button">
+        <input type="button" id="button" onclick="onSave(this)" value="投稿する">
+      </div>
+    </div>
+  <!-----入力フォーム-------->
+
+
+
+
+
+
+
+  <!---------------- javascript ------------------------>
+  <script>
+    //保存情報呼び出す------------------------------
+    function presetDiary(dateStr) {
+      let button = document.getElementById("button");
+      button.setAttribute("data-date", dateStr);
+      let diary_date = document.getElementById("diary_date");
+      diary_date.innerHTML = dateStr;
+      let title = localStorage[dateStr + "_title"];
+      let title_sub = localStorage[dateStr + "_title_sub"];
+      let body = localStorage[dateStr + "_body"];
+      let body_sub = localStorage[dateStr + "_body_sub"];
+      let diary_title = document.getElementById('diary_title');
+      let diary_title_sub = document.getElementById('diary_title_sub');
+      let diary_body = document.getElementById('diary_body');
+      let diary_body_sub = document.getElementById('diary_body_sub');
+      if (title) {
+        diary_title.value = title;
+        diary_title_sub.value = title_sub;
+      } else {
+        diary_title.value = "";
+        diary_title_sub.value = "";
+      }
+      if (body) {
+        diary_body.value = body;
+        diary_body_sub.value = body_sub;
+      } else {
+        diary_body.value = "";
+        diary_body_sub.value = "";
+      }
+    }
+    //------------------------------------
+    
+
+    //保存する--------------------------------
+    function onSave(obj) {
+      let dateStr = obj.getAttribute("data-date");
+      let diary_title = document.getElementById('diary_title').value;
+      let diary_title_sub = document.getElementById('diary_title_sub').value;
+      let diary_body = document.getElementById('diary_body').value;
+      let diary_body_sub = document.getElementById('diary_body_sub').value;
+      localStorage[dateStr + "_title"] = diary_title;
+      localStorage[dateStr + "_title_sub"] = diary_title_sub;
+      localStorage[dateStr + "_body"] = diary_body;
+      localStorage[dateStr + "_body_sub"] = diary_body_sub;
+      location.href = "html/road.html";
+    }
+    //---------------------------------------
+
+
+
+    //---------JS ここからカレンダー--------->
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let today = date.getDate();
+    let firstDate = new Date(year, month - 1, 1);
+    let lastDate = new Date(year, month, 0);
+    let table_title = year + "年 " + month + "月";
+    let captionHtml = "<caption>" + table_title + "</caption>";
+    let weekdays = ["日", "月", "火", "水", "木", "金", "土"];
+    let weekdaysStr = "<tr>";
+    for (let i = 0; i < 7; i++) {
+      if (i == 0) {
+        weekdaysStr += "<td class='sun'>" + weekdays[i] + "</td>";
+      } else if (i == 6) {
+        weekdaysStr += "<td class='sat'>" + weekdays[i] + "</td>";
+      } else {
+        weekdaysStr += "<td>" + weekdays[i] + "</td>";
+      }
+    }
+    weekdaysStr += "</tr>";
+    let htmlStr = "<tr>";
+    let startWeekDay = firstDate.getDay();
+    for (let i = 0; i < startWeekDay; i++) {
+      htmlStr += "<td>&nbsp;</td>";
+    }
+    for (let i = 1; i <= lastDate.getDate(); i++) {
+      let date = new Date(year, month - 1, i);
+      let weekDay = date.getDay();
+      let dateStr = year + "." + month + "." + i;
+      let cellStr = date.getDate();
+
+      if (localStorage[dateStr + "_title"]) cellStr = "<u>" + cellStr + "</u>";
+
+      if (weekDay == 0) htmlStr += "<tr>";
+      if (weekDay == 0) {
+        htmlStr += "<td class='sun'>";
+      } else if (weekDay == 6) {
+        htmlStr += "<td class='sat'>";
+      } else {
+        htmlStr += "<td>";
+      }
+
+      htmlStr += "<a onclick='presetDiary(\"" + dateStr + "\");'>" + cellStr + "</a></td>";
+
+      if (weekDay == 6) htmlStr += "</tr>\n";
+    }
+    let lastDayWeek = lastDate.getDay();
+    if (lastDayWeek != 6) {
+      for (let i = lastDayWeek + 1; i <= 6; i++) {
+        htmlStr += "<td>&nbsp;</td>";
+      }
+      htmlStr += "</tr>";
+    }
+    document.getElementById("calendar").innerHTML = "<table>" + captionHtml + weekdaysStr + htmlStr + "</table>";
+    //--------JS ここまでカレンダー--------->
+  </script>
+
+</body>
+</html>

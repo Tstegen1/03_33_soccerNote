@@ -1,0 +1,34 @@
+table {
+  border: 2px solid #ff9f22;
+  border-collapse: collapse; 
+}
+
+thead {
+  background: #ff9f22;
+  color: #fff;
+}
+
+th,td {
+  padding: 10px;
+  text-align: center;
+}
+
+/* 日曜は赤 */
+td:first-child {
+  color: red;
+}
+
+/* 土曜は青 */
+td:last-child {
+  color: blue;
+}
+
+/* 前、次の月の分は表示しない */
+td.disabled {
+  opacity: .2;
+}
+
+#back, #next {
+  cursor: pointer;
+  user-select: none;
+}

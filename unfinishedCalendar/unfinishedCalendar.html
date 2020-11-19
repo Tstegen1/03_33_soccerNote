@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>未完成カレンダー</title>
+</head>
+
+<body>
+  <!-- カレンダー -->
+  <table>
+    <!--見出し部分 ここから-->
+    <thead>
+      <tr>
+        <th id="back" style="font-size: 24px;">&lsaquo;</th> <!-- 文字実体参照 -->
+        <th id="title" colspan="5"></th> <!-- titleは5列分の幅を占有する 1週間は7列のため残りの2列は文字実体参照で1列ずつ使う-->
+        <th id="next" style="font-size: 24px;">&rsaquo;</th> <!-- 文字実体参照 -->
+      </tr>
+      <tr>
+        <th>日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th>土</th>
+      </tr>
+    </thead>
+    <!--見出し部分 ここまで-->
+
+    <!--本体部分-->
+    <tbody></tbody>
+    <!------------>
+  </table>
+  <!-- カレンダー -->
+
+  <script src="unfinishedCalendar.js"></script>
+</body>
+
+</html>

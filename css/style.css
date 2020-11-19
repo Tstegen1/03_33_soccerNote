@@ -1,0 +1,95 @@
+body {
+  background: #79484870;
+}
+
+.calendar-box {
+  margin-top: 50px;
+}
+
+#button {
+  margin-top: 50px;
+  width: 200px;
+  height: 50px;
+  
+}
+
+table {
+  width: 300px;
+  margin: 0 auto;
+  background: #aaa;
+  user-select: none;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+caption {
+  background: #aaa;
+  height: 40px;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+tbody > tr:nth-of-type(1) {
+  background:#ffffffa6;
+  height: 30px;
+  line-height: 30px;
+}
+
+.sun {
+  color: red;
+}
+
+.sat {
+  color: blue;
+}
+
+.form {
+  text-align: center;
+}
+
+.d_title {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+.d_title_sub {
+  margin: 50px 0 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#diary_body {
+    font-size: 15pt;
+    line-height: 31px;
+    padding: 31px;
+
+    /* テキストエリアに陰をつける */
+    box-shadow: 0.2em 0.2em 0.5em black;
+
+    /* 罫線描画 */
+    background-image: -webkit-linear-gradient(left, white 10px, transparent 10px), -webkit-linear-gradient(right, white 10px, transparent 10px), -webkit-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+    background-size: 100% 100%, 100% 100%, 100% 31px;
+    /* 淡いグレーで枠線を囲む */
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+#diary_body_sub {
+    font-size: 15pt;
+    line-height: 31px;
+    padding: 31px;
+
+
+    /* テキストエリアに陰をつける */
+    box-shadow: 0.2em 0.2em 0.5em black;
+
+    /* 罫線描画 */
+    background-image: -webkit-linear-gradient(left, white 10px, transparent 10px), -webkit-linear-gradient(right, white 10px, transparent 10px), -webkit-linear-gradient(white 30px, #ccc 30px, #ccc 31px, white 31px);
+    background-size: 100% 100%, 100% 100%, 100% 31px;
+    /* 淡いグレーで枠線を囲む */
+    border: 1px solid #ccc;
+    resize: none;
+}
